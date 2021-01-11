@@ -1,0 +1,33 @@
+<div class="container col-xs-12">
+    <form action="submit">
+      <div class="row">
+        <div class="form-group row">
+          <div class="col-xs-6">
+            <label for="topic">Event topic: </label>
+            <input class="form-control" name="topic" type="text"/>
+          </div>
+          <div class="col-xs-6">
+            <label for="eventStatus">Status:</label>
+            <select class="form-control form-control-sm" name="eventStatus" id="eventStatus">
+              <option value="open">Open</option>
+              <option value="review">Review</option>
+              <option value="updated">Updated</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <label for="eventDesp">Description</label>
+            <textarea class="form-control" name="eventDesp" id="eventDes" cols="70" rows="4"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-success pull-right">Create</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr/>
+</div>
