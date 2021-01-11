@@ -1,4 +1,6 @@
 # Proof-of-Concepts
 ## This is a github test profile.
 
-This perticular repository will contain all the test pocs in different frameworks from core java to all known frameworks i will work with
+This repository contains the UI code for a project logging structure app that can help you keep track of your project status and work.
+
+This is specifically designed for individual developers and not for team users.
