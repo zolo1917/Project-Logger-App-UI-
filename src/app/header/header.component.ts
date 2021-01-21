@@ -16,12 +16,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(private modalService: NgbModal) {}
 
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  public openModel(){
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
+
+  public closeModel(){
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
   }
 
   private getDismissReason(reason: any): string {
