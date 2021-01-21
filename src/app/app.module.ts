@@ -7,6 +7,7 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { EventLListComponent } from './event-llist/event-llist.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

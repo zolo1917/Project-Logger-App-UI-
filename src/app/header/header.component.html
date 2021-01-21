@@ -1,15 +1,49 @@
-<header>
-    <div class="container">
-      <div class="model" id="modal-1">
-        <div class="model-dailog">
-          <div class="model-content">
-            <div class="model-header">
-              
-            </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
           </div>
         </div>
       </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+<header>
+  <!-- <button class="btn-btn-primary" type="button" data-toggle="modal" data-target="#modal1"> click model test </button> -->
+            
+  <!-- <div class="model" id="modal1">
+    <div class="model-dailog">
+      <div class="model-content">
+        <div class="model-header">
+          <h3>Login</h3>
+          <button class="btn btn-danger pull-right" data-dismiss="model1">X</button>
+        </div>
+        <div class="model-body">
+          <span>this is a sample body</span>
+        </div>
+        <div class="modal-footer">
+          <span>this is a sample footer</span>
+        </div>
+      </div>
     </div>
+  </div> -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -30,7 +64,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#" data-toggle="modal" data-t>Login</a>
+            <!-- <a href="#">Login</a> -->
+        
+            
           </li>
           <li>
             <a href="#">Sign Up</a>
