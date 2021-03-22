@@ -3,37 +3,47 @@
   <!-- Modal content -->
   <div class="modal-content">
     <!-- <form ngSubmit="OnSubmit()">
-
+      <div class="container">
+        <label for="Username">Username : </label>
+        <input id="username" name="Username" type="text"> </div>
+      </div>
+      <div class="container">
+        <label for="password">Password : </label>
+        <input id="password" name="password" type="password"> </div>
+      </div>
     </form> -->
     <span class="close" (click)="closeModel()">&times;</span>
     <p>Some text in the Modal..</p>
   </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+  <div >
       <a class="navbar-brand">Project Logger</a>
+      <button class="navbar-toggler" type="button" data-toggle = "collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
   </div>
-  <div class="collapse navbar-collapse">
-    <ul class="nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link active" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a href="#">Project Dashboard</a>
+        <a  class="nav-link" href="#">Dashboards</a>
       </li>
       <li class="nav-item">
-        <a href="#">Event Details</a>
+        <a  class="nav-link" href="#">Events</a>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item" *ngIf="!isLoggedIn">
         <a (click)="openModel()">Login</a>
       </li>
-      <li>
-        <a href="#">Sign Up</a>
+      <li  class="nav-item" *ngIf="!isLoggedIn">
+        <a class="nav-link" href="#">Sign-Up</a>
       </li>
-      <li>
-        <a href="#">Logout</a>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="nav-link" href="#">Logout</a>
       </li>
     </ul>
   </div>
