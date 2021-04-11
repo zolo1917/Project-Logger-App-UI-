@@ -9,19 +9,20 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
 
   showModalDiv: boolean = false;
+  isLoggedIn: boolean = false;
   ngOnInit(): void {
   }
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
-  public openModel(){
+  public openModel() {
     var modal = document.getElementById("myModal");
     modal.style.display = "block";
   }
 
-  public closeModel(){
+  public closeModel() {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
