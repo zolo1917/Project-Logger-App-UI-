@@ -1,17 +1,21 @@
 <header>
   <app-header></app-header>
 </header>
-<div class="background-image"></div>
 <body>
   <div class="container">
-    <div class="col-md-3">
+    <div class="col-xs-12 col-md-3">
       <app-project-list></app-project-list>
     </div>
-    <div class="col-md-6">
-        <app-event-details></app-event-details>      
-        <app-event-llist></app-event-llist>
+    <div class="col-xs-12 col-md-6">
+        <div class="container-md">
+          <app-event-details></app-event-details>
+        </div>
+        <hr>      
+        <div class="container-md">
+          <app-event-llist></app-event-llist>
+        </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xs-12 col-md-3">
       <app-project-details></app-project-details>
     </div>
   </div>
