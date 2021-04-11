@@ -1,3 +1,5 @@
+import { EventService } from './../Service/event.service';
+import { ProjectEvent } from './../Model/ProjectEvent';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventLListComponent implements OnInit {
 
-  constructor() { }
+  eventList : ProjectEvent[] = []
+  constructor(private eventServ : EventService) {
+    this.eventList = this.eventServ.getProjectEvents();
+   }
 
   ngOnInit(): void {
   }

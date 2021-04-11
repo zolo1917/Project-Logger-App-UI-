@@ -5,7 +5,12 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-xs-12">
-      <a class="list-group-item clearfix" href="#">Test Project</a>
+    <div class="col-xs-12" *ngFor="let project of projects; let arrayIndex = i">
+      <a class="list-group-item clearfix" href="#">
+        <div class="pull-left">
+          <h4 class="list-group-heading">{{ project.name }}</h4>
+          <p class="list-group-item-text">{{ project.desc }}</p>
+      </div>
+      </a>
     </div>
 </div>
