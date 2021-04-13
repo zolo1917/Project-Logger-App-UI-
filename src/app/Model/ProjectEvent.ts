@@ -1,7 +1,7 @@
 export class ProjectEvent {
-    eventTopic : String;
+    topic : String;
     status : String ;
-    description : String;
+    eventDesc : String;
 
     constructor(){}
 }

@@ -4,11 +4,11 @@
         <div class="form-group row">
           <div class="col-xs-6">
             <label for="topic">Event topic: </label>
-            <input class="form-control" fromControlName="topic" name="topic" type="text"/>
+            <input class="form-control" formControlName="topic" name="topic" type="text"/>
           </div>
           <div class="col-xs-6">
-            <label for="eventStatus">Status:</label>
-            <select class="form-control form-control-sm" fromControlName="status" name="eventStatus" id="eventStatus">
+            <label for="status">Status:</label>
+            <select class="form-control form-control-sm" formControlName="status" name="status" id="status">
               <option value="open">Open</option>
               <option value="review">Review</option>
               <option value="updated">Updated</option>
@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-xs-12">
             <label for="eventDesp">Description</label>
-            <textarea class="form-control" name="eventDesp" fromControlName="eventDesp" id="eventDes" cols="70" rows="4"></textarea>
+            <textarea class="form-control" name="eventDesc" formControlName="eventDesc" id="eventDesc" cols="70" rows="4"></textarea>
           </div>
         </div>
         <br>
