@@ -1,8 +1,12 @@
-<div class="container col-xs-12">
+<div class="container">
     <div class="list-group-item" *ngFor="let item of eventList">
       <div class="row">
-        <p class="list-group-item-heading col-xs-6">{{item.topic}}</p>
-        <p class="list-group-item-heading col-xs-4 pull-right">{{item.status}}</p>
+        <div class="col-xs-12 col-md-5">
+          <p class="list-group-item-heading">{{item.topic}}</p>
+        </div>
+        <div class="col-xs-12 col-md-3 ml-auto">
+          <p class="list-group-item-heading">{{item.status}}</p>
+        </div>
       </div>
       <div class="row">  
         <p class="list-group-item-text">{{item.eventDesc}}</p>

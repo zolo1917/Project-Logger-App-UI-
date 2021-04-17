@@ -18,4 +18,9 @@ export class ProjectListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  projectLIClick(id : number){
+    console.log ("Clicked Index : " + id);
+    this.projServ.selectProjectById(id);
+  }
+
 }
