@@ -19,4 +19,11 @@ export class EventService {
         this.projectEventList.next(this.projectEvents.slice());
         console.log("Event Added {}", this.projectEvents.slice());
     }
+
+    /**
+     * Update the eventList with the events of the new project
+     */
+    updateEventList(eventList : ProjectEvent[]){
+        this.projectEventList.next(eventList);
+    }
 }

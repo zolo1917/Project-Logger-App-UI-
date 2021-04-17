@@ -1,11 +1,14 @@
 <div class="row col-xs-12">
-    <div>
-      <h3>Project Name</h3>
-      <span>Project Status</span>
-    </div>
-    <hr/>
+  <div>
+    <h3>{{projectDetails.name}}</h3>
   </div>
-  <div class="row col-xs-12">
-    <label for="projectSummary">Summary : </label>
-    <span id="projectSummary"> This is a test project summary</span>
+  <hr/>
+</div>
+<div class="row col-xs-12">
+  <label for="projectSummary">Summary : </label>
+  <span id="projectSummary"> {{projectDetails.summary}}</span>
+</div>
+<div class="row col-xs-12">
+  <label for="projectDetails">Project Details : </label><br>
+  <span id="projectDetials">{{projectDetails.details}}</span>
 </div>

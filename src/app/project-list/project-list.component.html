@@ -6,7 +6,7 @@
   <hr>
   <div class="row">
     <div class="col-xs-12 col-md-12" *ngFor="let project of projects; let arrayIndex = i">
-      <a class="container-fluid list-group-item clearfix" href="#">
+      <a class="container-fluid list-group-item clearfix" (click)="projectLIClick(project.id)" href="#">
         <div class="float-left">
           <h4 class="list-group-heading">{{ project.name }}</h4>
           <p class="list-group-item-text">{{ project.desc }}</p>
