@@ -1,0 +1,28 @@
+<ng-template #LoginModel let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Login</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="loginForm" id="loginForm" (ngSubmit)="OnLogin()">
+        <div class="container">
+            <div class="row form-group">
+                <label for="username"> Username : </label>
+                <input class="form-control" formControlName="username" id="username"type="text"/>
+            </div>
+            <div class="row form-group">
+                <label for="password"> password : </label>
+                <input class="form-control" formControlName="password" id="password" type="password"/>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" form="loginForm" (click)="modal.close('Save click')" type="submit">Login</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+<a class= "nav-link" (click)="triggerModal(LoginModel)">Login</a>

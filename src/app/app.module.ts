@@ -10,15 +10,19 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProjectListComponent,
-    EventLListComponent,
+    EventLListComponent, 
     EventDetailsComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
