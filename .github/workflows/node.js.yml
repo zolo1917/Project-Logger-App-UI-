@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Person to greet'
+        description: 'Reason for run :'
         required: true
 jobs:
   build:
