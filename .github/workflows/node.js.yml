@@ -8,7 +8,11 @@ on:
     branches: [ master, feature/* , release/* ,  hotfix/* , support/* ]
   pull_request:
     branches: [ master, feature/* , release/* ,  hotfix/* , support/* ]
-
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
 jobs:
   build:
 
