@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class EventService {
     
-    projectEvents : ProjectEvent[] = [{topic : "Test event 1", status : "open", eventDesc : "this is a test description for the event"}, {topic : "Test event 2", status : "Review", eventDesc : "this is a test description for the event under review"}];
+    projectEvents : ProjectEvent[] = [];
     public projectEventList = new Subject<ProjectEvent[]>();
     getProjectEvents(){
         return this.projectEvents;
@@ -24,6 +24,7 @@ export class EventService {
      * Update the eventList with the events of the new project
      */
     updateEventList(eventList : ProjectEvent[]){
+        this.projectEvents = eventList;
         this.projectEventList.next(eventList);
     }
 }

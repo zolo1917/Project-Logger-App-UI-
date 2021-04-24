@@ -1,21 +1,6 @@
 <!-- The Modal -->
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <!-- <form ngSubmit="OnSubmit()">
-      <div class="container">
-        <label for="Username">Username : </label>
-        <input id="username" name="Username" type="text"> </div>
-      </div>
-      <div class="container">
-        <label for="password">Password : </label>
-        <input id="password" name="password" type="password"> </div>
-      </div>
-    </form> -->
-    <span class="close" (click)="closeModel()">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-</div>
+<!-- <div id="myModal" class="modal">
+</div> -->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
   <div >
       <a class="navbar-brand">Project Logger</a>
@@ -37,14 +22,14 @@
     </ul>
     <ul class="navbar-nav navbar-right">
       <li class="nav-item" *ngIf="!isLoggedIn">
-        <a class= "nav-link" (click)="openModel()">Login</a>
+        <app-login></app-login>
       </li>
       <li  class="nav-item" *ngIf="!isLoggedIn">
-        <a class="nav-link" href="#">Sign-Up</a>
+        <app-signup></app-signup>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a class="nav-link" href="#">Logout</a>
       </li>
-    </ul>
+  </ul>
   </div>
 </nav>

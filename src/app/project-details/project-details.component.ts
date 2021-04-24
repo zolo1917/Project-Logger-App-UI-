@@ -10,7 +10,7 @@ import { ProjectService } from '../Service/project.service';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  projectDetails : Project;
+  projectDetails : Project = new Project();
 
   projSub : Subscription;
 
