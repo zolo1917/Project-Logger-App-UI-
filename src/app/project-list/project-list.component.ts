@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { ProjectService } from './../Service/project.service';
 import { ProjectListItem } from './../Model/projectListItem';
 import { Component, OnInit } from '@angular/core';
@@ -10,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class ProjectListComponent implements OnInit {
 
   projects : ProjectListItem[] = [];
+  PLSub : Subscription;
 
   constructor(private projServ : ProjectService) { 
     this.projects = projServ.getProjectList();
+    this.PLSub = this.projServ.projectListSub.subscribe((data : ProjectListItem[])=>{
+      this.projects = data;
+    });
   }
 
   ngOnInit(): void {

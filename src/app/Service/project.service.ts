@@ -1,3 +1,4 @@
+import { ProjectEvent } from './../Model/ProjectEvent';
 import { EventService } from './event.service';
 import { Subject } from 'rxjs';
 import { Project } from './../Model/Project';
@@ -9,6 +10,7 @@ export class ProjectService {
     private projects : ProjectListItem[] = [{id : 1, name: "test 1", desc: "this is a test project 1"},{id : 2, name: "test 2", desc: "this is a test project 2"}];
 
     public selectedProject = new Subject<Project>() ;
+    public projectListSub = new Subject<ProjectListItem[]>();
 
     projectList : Project[] = [
         { 
@@ -38,8 +40,22 @@ export class ProjectService {
     /**
      * Method for adding to a project
      */
-    addProject() {
+    addProject(proj : Project) {
+        // pushing into the original project list
+        proj.id = this.projectList.length;
+        let eventLIst :ProjectEvent[] = [];
+        proj.events = eventLIst;
+        this.projectList.push(proj);
         
+        // pushing into the project list
+        let len: number = this.projectList.length;
+        let projListItem : ProjectListItem = {        
+            'id' : len,
+            'name' : proj.name,
+            'desc' : proj.summary
+        };
+        this.projects.push(projListItem);
+        this.projectListSub.next(this.projects);
     }
     /**
      * Method for fetching detials as per ID
