@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { CreateEditProjectComponent } from './create-edit-project/create-edit-project.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignupComponent } from './signup/signup.component';
     EventDetailsComponent,
     ProjectDetailsComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CreateEditProjectComponent
   ],
   imports: [
     BrowserModule,
