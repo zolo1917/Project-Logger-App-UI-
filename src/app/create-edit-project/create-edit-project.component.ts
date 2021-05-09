@@ -1,7 +1,7 @@
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Project } from './../Model/Project';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from '../Service/project.service';
 
 @Component({
@@ -10,29 +10,55 @@ import { ProjectService } from '../Service/project.service';
   styleUrls: ['./create-edit-project.component.css']
 })
 export class CreateEditProjectComponent implements OnInit {
-
   project : Project = new Project();
   projectForm : FormGroup;
   closeModal: string;
+  isEdit : boolean = false;
+
+  @ViewChild("projectDetails") projDetailsModel;
+
   constructor(private modalService: NgbModal,private projServ : ProjectService) { }
   
   ngOnInit(): void {
-    this.initProjectForm(new Project());  
-  }
-
-  initProjectForm(proj : Project){
-    this.projectForm = new FormGroup({
-      'name' : new FormControl(proj.name),
-      'summary' : new FormControl(proj.summary),
-      'details' : new FormControl(proj.details)
+    this.initProjectForm(new Project());
+    this.projServ.editSelectedProject.subscribe((data : Project)=>{
+      this.isEdit = true;
+      this.initProjectForm(data);
+      this.triggerModal(this.projDetailsModel);
     });
   }
 
-  onCreateProject(){
-    console.log(this.projectForm.value);
-    this.projServ.addProject(this.projectForm.value);
+  initProjectForm(proj : Project){
+    if(!this.isEdit){
+      this.projectForm = new FormGroup({
+        'name' : new FormControl(proj.name),
+        'summary' : new FormControl(proj.summary),
+        'details' : new FormControl(proj.details)
+      });
+    }else {
+      this.projectForm = new FormGroup({
+        'id' : new FormControl(proj.id),
+        'name' : new FormControl(proj.name),
+        'summary' : new FormControl(proj.summary),
+        'details' : new FormControl(proj.details)
+      });
+    }
+    
   }
 
+  onCreateProject(){
+    if(this.isEdit){
+      this.projServ.updateProject(this.projectForm.value.id, this.projectForm.value);
+    }else {
+      this.projServ.addProject(this.projectForm.value);
+    }
+    
+  }
+  onCreateNewProject(){
+    this.isEdit = false;
+    this.initProjectForm(new Project());
+    this.triggerModal(this.projDetailsModel);
+  }
   triggerModal(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
       this.closeModal = `Closed with: ${res}`;
@@ -50,5 +76,4 @@ export class CreateEditProjectComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
 }

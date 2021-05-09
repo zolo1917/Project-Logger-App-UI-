@@ -28,4 +28,8 @@ export class ProjectListComponent implements OnInit {
     this.projServ.selectProjectById(id);
   }
 
+  OnEdit(id : number){
+    this.projServ.editElementByID(id);
+  }
+
 }

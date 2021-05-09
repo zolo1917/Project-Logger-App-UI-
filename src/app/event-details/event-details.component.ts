@@ -32,8 +32,8 @@ export class EventDetailsComponent implements OnInit {
   }
   
   OnSubmit(){
-    console.log(this.eventForm.value);
     this.eventServ.addEvent(this.eventForm.value);
+    this.initForm();
   }
 
 }

@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
   }
 
   OnLogin (){
-    console.log(this.loginForm.value);
     // write the call for the logging in here
     // then clear the form
     this.initializeForm();
