@@ -11,6 +11,7 @@ export class ProjectService {
 
     public selectedProject = new Subject<Project>() ;
     public projectListSub = new Subject<ProjectListItem[]>();
+    public editSelectedProject = new Subject<Project>();
 
     projectList : Project[] = [
         { 
@@ -37,6 +38,8 @@ export class ProjectService {
     getProjectList () {
         return this.projects;
     }
+
+
     /**
      * Method for adding to a project
      */
@@ -57,19 +60,52 @@ export class ProjectService {
         this.projects.push(projListItem);
         this.projectListSub.next(this.projects);
     }
+
+
     /**
      * Method for fetching detials as per ID
      */
     getProjectById(projectID : number){
-        return this.projectList[projectID];
+        return this.projectList[projectID-1];
     }
+
+
     /**
      * Method for selecting the project
      */
     selectProjectById(projectId : number){
         this.selectedProject.next(this.projectList[projectId-1]);
-        
         this.eventServe.updateEventList(this.projectList[projectId-1].events);
     }
-    
+
+
+    /**
+     * Edit Project select
+     * @param id Project Id
+     */
+    editElementByID(id : number){
+        console.log("Project Details from service {}: {}",id, this.getProjectById(id));
+        this.editSelectedProject.next(this.getProjectById(id));
+    }
+
+
+    /**
+     * Update details of an existing project
+     * @param proj Updated project Element
+     */
+    updateProject(id: number, proj : Project){
+        console.log("Updated Project : ", proj);
+        console.log("Current Project : ", this.projectList[id-1]);
+        this.projectList[id-1]= proj;
+
+        let projLineItem : ProjectListItem = {        
+            'id' : id,
+            'name' : proj.name,
+            'desc' : proj.summary
+        };
+
+        this.projects[id-1] = projLineItem;
+        this.projectListSub.next(this.projects);
+        this.selectedProject.next(this.projectList[id-1]);
+    } 
 }

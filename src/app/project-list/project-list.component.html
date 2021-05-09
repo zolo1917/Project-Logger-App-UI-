@@ -10,7 +10,10 @@
         <div class="float-left">
           <h4 class="list-group-heading">{{ project.name }}</h4>
           <p class="list-group-item-text">{{ project.desc }}</p>
-      </div>
+        </div>
+        <div class="container-fluid float-right">
+          <button class="btn btn-danger" type="button" (click)="OnEdit(project.id)">Edit</button>
+        </div>
       </a>
     </div>
 </div>
