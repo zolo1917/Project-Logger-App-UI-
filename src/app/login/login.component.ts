@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
   closeModal: string;
   ngOnInit(): void {
-    this.initializeForm();
+    this.initializeForm();  
   }
 
   private initializeForm(){
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
     // write the call for the logging in here
     // then clear the form
     this.initializeForm();
+    
   }
 
 

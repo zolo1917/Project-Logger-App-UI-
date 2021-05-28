@@ -25,4 +25,4 @@
     </div>
 </ng-template>
 
-<a class= "nav-link" (click)="triggerModal(LoginModel)">Login</a>
+<a class= "nav-link" (click)="triggerModal(LoginModel)">{{isLoggedIn ? "Logout" : "Login"}}</a>

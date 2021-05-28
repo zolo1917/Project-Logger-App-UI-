@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CreateEditProjectComponent } from './create-edit-project/create-edit-project.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CreateEditProjectComponent } from './create-edit-project/create-edit-pr
     ProjectDetailsComponent,
     LoginComponent,
     SignupComponent,
-    CreateEditProjectComponent
+    CreateEditProjectComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
