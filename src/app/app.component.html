@@ -3,22 +3,12 @@
 </header>
 <br>
 <body>
-  <div class="container-fluid row">
-    <div class="col-xs-12 col-md-3">
-      <app-project-list></app-project-list>
-    </div>
-    <div class="col-xs-12 col-md-6">
-        <div class="container-md">
-          <app-event-details></app-event-details>
-        </div>
-        <hr>      
-        <div class="container-md">
-          <app-event-llist></app-event-llist>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-3">
-      <app-project-details></app-project-details>
-    </div>
+  <!-- <div *ngIf="isLoggedIn">
+    <app-proj-landing></app-proj-landing>  
   </div>
+  <ng-template [ngIf]="!isLoggedIn">
+    <app-home-page></app-home-page>
+  </ng-template> -->
+  <router-outlet></router-outlet>
 </body>
 

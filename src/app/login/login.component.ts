@@ -1,3 +1,4 @@
+import { AuthService } from './../Service/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   loginForm : FormGroup;
   
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private authServe : AuthService) { }
   closeModal: string;
   ngOnInit(): void {
     this.initializeForm();  
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   
   triggerModal(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      console.log(res);
       this.closeModal = `Closed with: ${res}`;
     }, (res) => {
       this.closeModal = `Dismissed ${this.getDismissReason(res)}`;

@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
-import { ProjectService } from './../Service/project.service';
-import { ProjectListItem } from './../Model/projectListItem';
+import { ProjectService } from '../../Service/project.service';
+import { ProjectListItem } from '../../Model/projectListItem';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,6 +1,6 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { EventService } from './../Service/event.service';
-import { ProjectEvent } from './../Model/ProjectEvent';
+import { EventService } from '../../Service/event.service';
+import { ProjectEvent } from '../../Model/ProjectEvent';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

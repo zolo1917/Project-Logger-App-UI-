@@ -1,17 +1,16 @@
-import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { CreateEditProjectComponent } from './create-edit-project/create-edit-project.component';
+import { ProjLandingComponent } from './proj-landing/proj-landing.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProjectDetailsComponent } from './proj-landing/project-details/project-details.component';
+import { CreateEditProjectComponent } from './create-edit-project/create-edit-project.component';
+import { EventDetailsComponent } from './proj-landing/event-details/event-details.component';
 
 const routes: Routes = [
-    { path : ':id', component : ProjectDetailsComponent},
-    { path : 'login', component: LoginComponent},
-    { path : 'signup', component: SignupComponent},
-    { path : 'createEditProject', component: CreateEditProjectComponent},
-    { path : 'creteEvent', component : EventDetailsComponent}
+    { path : 'home', component : HomePageComponent},
+    { path : 'projectDashBoard', component : ProjLandingComponent}
 ];
 
 @NgModule({
