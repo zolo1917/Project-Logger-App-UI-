@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   loginForm : FormGroup;
   
-  constructor(private modalService: NgbModal, private authServe : AuthService) { }
+  constructor(private modalService: NgbModal, private authServe : AuthService ) { }
   closeModal: string;
   ngOnInit(): void {
     this.initializeForm();  
@@ -30,11 +30,14 @@ export class LoginComponent implements OnInit {
   
   triggerModal(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
-      console.log(res);
+      this.OnLogin();
       this.closeModal = `Closed with: ${res}`;
-    }, (res) => {
-      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
-    });
+    }
+    // , (res) => {
+    //   console.log(res);
+    //   this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    // }
+    );
   }
   
   private getDismissReason(reason: any): string {
@@ -47,13 +50,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  OnLogin (){
+  private OnLogin (){
     // write the call for the logging in here
     // then clear the form
-    this.initializeForm();
+    this.authServe.OnLogin(this.loginForm.value.username, this.loginForm.value.password);
     
   }
-
-
 
 }

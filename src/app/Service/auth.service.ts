@@ -11,6 +11,8 @@ export class AuthService {
         // get to hit the backend to check username and password
         this.isLoggedIn = true;
         this.sub.next(this.isLoggedIn);
+        console.log("Username :", username);
+        console.log("Passoword : ", password)
     }
 
     OnLogout(){

@@ -9,6 +9,7 @@ import { CreateEditProjectComponent } from './create-edit-project/create-edit-pr
 import { EventDetailsComponent } from './proj-landing/event-details/event-details.component';
 
 const routes: Routes = [
+    { path: '', redirectTo : '/home', pathMatch: 'full'},
     { path : 'home', component : HomePageComponent},
     { path : 'projectDashBoard', component : ProjLandingComponent}
 ];
