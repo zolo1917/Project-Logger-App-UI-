@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Project } from '../Model/Project';
-import { ProjectService } from '../Service/project.service';
+import { Project } from '../../Model/Project';
+import { ProjectService } from '../../Service/project.service';
 
 @Component({
   selector: 'app-project-details',

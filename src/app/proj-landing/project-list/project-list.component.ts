@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
-import { ProjectService } from './../Service/project.service';
-import { ProjectListItem } from './../Model/projectListItem';
+import { ProjectService } from '../../Service/project.service';
+import { ProjectListItem } from '../../Model/projectListItem';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -24,7 +24,6 @@ export class ProjectListComponent implements OnInit {
   }
 
   projectLIClick(id : number){
-    console.log ("Clicked Index : " + id);
     this.projServ.selectProjectById(id);
   }
 

@@ -21,8 +21,8 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" form="loginForm" (click)="modal.close('Save click')" type="submit">Login</button>
-        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('close')">Close</button>
     </div>
 </ng-template>
 
-<a class= "nav-link" (click)="triggerModal(LoginModel)">Login</a>
+<a class= "nav-link" (click)="triggerModal(LoginModel)">{{isLoggedIn ? "Logout" : "Login"}}</a>

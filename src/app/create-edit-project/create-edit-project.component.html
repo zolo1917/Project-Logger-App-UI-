@@ -24,7 +24,9 @@
       </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" form="projectForm" (click)="modal.close('Save click')" type="submit">Create Porject</button>
+        <button class="btn btn-success" form="projectForm" (click)="modal.close('Save click')" type="submit">
+          {{ isEdit ? "Update Project" : "Create Porject"}}
+        </button>
     </div>
 </ng-template>
 
