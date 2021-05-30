@@ -1,3 +1,4 @@
+import { AuthService } from './../Service/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   
   signUpForm : FormGroup;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private authServ : AuthService) { }
   closeModal: string;
   ngOnInit(): void {
     this.initializeSignUpForm()
@@ -52,6 +53,7 @@ export class SignupComponent implements OnInit {
 
   OnSignup(){
     // update the signup form 
-    console.log(this.signUpForm.value);
+    // console.log(this.signUpForm.value);
+    this.authServ.OnSignUp(this.signUpForm.value);
   }
 }

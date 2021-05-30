@@ -22,4 +22,10 @@ export class AuthService {
         this.sub.next(this.isLoggedIn);
     }
 
+    OnSignUp( signupDetials : any ){
+        // Add logic for calling the backend functionality for the setup
+        console.log(signupDetials);
+        this.OnLogin(signupDetials.username, signupDetials.password);
+    }
+
 }
