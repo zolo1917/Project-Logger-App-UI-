@@ -2,8 +2,10 @@ import { ProjectEvent } from './../Model/ProjectEvent';
 import { EventService } from './event.service';
 import { Subject } from 'rxjs';
 import { Project } from './../Model/Project';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ProjectListItem } from './../Model/projectListItem';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ProjectService {
@@ -30,12 +32,27 @@ export class ProjectService {
         }
     ];
 
-    constructor(private eventServe: EventService) {}
+    constructor(
+        private eventServe: EventService,
+        private httpService : HttpClient
+        ) {}
 
     /**
      * New method to fetch all active Projects
      */
     getProjectList () {
+        let projects : any;
+        projects = this.httpService.get('localhost:8080/project/getProjects?id=3').pipe(
+            map((projectData : Project[]) => {
+                return projectData.map(Project =>{
+                    return {... Project, events : Project.events ? Project.events : []};
+                });
+            }),
+            tap(()=>{
+                return null;
+            })
+        );
+        console.log(projects);
         return this.projects;
     }
 

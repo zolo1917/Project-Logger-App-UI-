@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,6 +35,7 @@ import { ProjLandingComponent } from './proj-landing/proj-landing.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     CoreModule,
     FormsModule,
     ReactiveFormsModule

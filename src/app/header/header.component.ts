@@ -31,6 +31,8 @@ export class HeaderComponent implements OnInit {
   navToDashboard() {
     if(this.isLoggedIn){
       this.rourter.navigate(['projectDashBoard'], {relativeTo : this.activeRoute});
+    }else {
+      this.rourter.navigate(['home'], {relativeTo: this.activeRoute});
     }
   }
 
