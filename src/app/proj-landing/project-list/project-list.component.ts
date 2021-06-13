@@ -14,7 +14,7 @@ export class ProjectListComponent implements OnInit {
   PLSub : Subscription;
 
   constructor(private projServ : ProjectService) { 
-    this.projects = projServ.getProjectList();
+    this.projects = projServ.getProjectList(1);
     this.PLSub = this.projServ.projectListSub.subscribe((data : ProjectListItem[])=>{
       this.projects = data;
     });

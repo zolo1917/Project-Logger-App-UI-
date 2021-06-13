@@ -41,25 +41,28 @@ export class ProjectService {
     /**
      * New method to fetch all active Projects
      */
-    getProjectList () {
-        let userId: number = 3;
-        let projectList : any;
+    getProjectList (userId : number) {
+        userId = 1;
+        let projectList : Project[] = [];
+        let projLineItems : ProjectListItem[] = [];
         let headers = new HttpHeaders();
         headers.append('Content-type', 'application/json');
-        let params = new HttpParams();
-        params.append('id', userId.toString());
-        this.httpClient.get('http://localhost:8080/project/getProjects',{ headers: headers, params : params })
-        // .pipe(
-        //     // map((projectData : Project[]) => {
-        //     //     return projectData.map(Project =>{
-        //     //         return {... Project, events : Project.events ? Project.events : []};
-        //     //     });
-        //     // }),
-        //     tap(data =>
-        //         console.log('All: ' + JSON.stringify(data)));
-        // )
-        .subscribe(data =>{
-            projectList = data;
+        headers.set('Access-Control-Allow-Origin', '*');
+        this.httpClient.get('http://localhost:8080/project/getProjects?id='+userId,{ headers: headers})
+        .subscribe((data : any[]) =>{
+            for(var i=0 ;i < data.length ; i++ ){
+                console.log(data[i]);
+                let proj : Project = new Project();
+                proj.id=data[i].id;
+                proj.name=data[i].projectName;
+                proj.summary = data[i].summary;
+                proj.details = data[i].projectDescription;
+                projectList.push(proj);
+
+                // create project List Item
+                
+
+            }
             console.log('All: ' + JSON.stringify(data));
         },
         error => {
