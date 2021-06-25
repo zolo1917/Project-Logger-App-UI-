@@ -10,66 +10,67 @@ import { URLSearchParams } from 'url';
 
 @Injectable()
 export class ProjectService {
-    private projects : ProjectListItem[] = [{id : 1, name: "test 1", desc: "this is a test project 1"},{id : 2, name: "test 2", desc: "this is a test project 2"}];
+    private projects : ProjectListItem[] = [];
 
     public selectedProject = new Subject<Project>() ;
     public projectListSub = new Subject<ProjectListItem[]>();
     public editSelectedProject = new Subject<Project>();
 
-    projectList : Project[] = [
-        { 
-            id : 1,
-            name : "test 1",
-            summary : "This is the summary for test 1",
-            details : "this is a longer description of what test 1 is and what all it contains",
-            events : [{ id: 1, topic : "PT1 Test event 1", status : "open", eventDesc : "this is a test description for the event"}, {id:2, topic : "PT1 Test event 2", status : "Review", eventDesc : "this is a test description for the event under review"}]  
-        },
-        { 
-            id : 2,
-            name : "test 2",
-            summary : "This is the summary for test 2",
-            details : "this is a longer description of what test 2 is and what all it contains",
-            events : [{id:3, topic : "PT2 Test event 1", status : "open", eventDesc : "this is a test description for the event"}, {id:4, topic : "PT2 Test event 2", status : "Review", eventDesc : "this is a test description for the event under review"}]  
-        }
-    ];
+    projectList : Project[] = [];
 
     constructor(
         private eventServe: EventService,
         private httpClient : HttpClient
         ) {}
 
-    /**
+    private  setHTTPHeaders() {
+        let headers = new HttpHeaders();
+        headers.append('Content-type', 'application/json');
+        headers.set('Access-Control-Allow-Origin', '*');
+        return headers;
+    }
+    
+        /**
      * New method to fetch all active Projects
      */
     getProjectList (userId : number) {
         userId = 1;
-        let projectList : Project[] = [];
-        let projLineItems : ProjectListItem[] = [];
-        let headers = new HttpHeaders();
-        headers.append('Content-type', 'application/json');
-        headers.set('Access-Control-Allow-Origin', '*');
-        this.httpClient.get('http://localhost:8080/project/getProjects?id='+userId,{ headers: headers})
+        
+        this.httpClient.get('http://localhost:8080/project/getProjects?id='+userId,{ headers: this.setHTTPHeaders()})
         .subscribe((data : any[]) =>{
             for(var i=0 ;i < data.length ; i++ ){
                 console.log(data[i]);
-                let proj : Project = new Project();
-                proj.id=data[i].id;
-                proj.name=data[i].projectName;
-                proj.summary = data[i].summary;
-                proj.details = data[i].projectDescription;
-                projectList.push(proj);
+               
+                // if(data[i].events) {
+                //     proj.events = data[i].events
+                // }else {
+                //     let eventList : ProjectEvent[] = [];
+                //     proj.events = eventList ;
+                // }
+                // this.projectList.push(proj);
 
                 // create project List Item
-                
+                let projListItem : ProjectListItem = new ProjectListItem;
+                projListItem.id = data[i].id;
+                projListItem.name = data[i].projectName;
+                projListItem.desc = data[i].summary;
+                this.projects.push(projListItem);
 
             }
-            console.log('All: ' + JSON.stringify(data));
         },
         error => {
             console.log(error);
         });
-        console.log(projectList);
         return this.projects;
+    }
+
+    private convertDataProjToModel(data : any){
+        let proj : Project = new Project();
+        proj.id = data.id;
+        proj.name = data.projectName;
+        proj.summary = data.summary;
+        proj.details = data.projectDescription;
+        return proj
     }
 
 
@@ -82,7 +83,6 @@ export class ProjectService {
         let eventLIst :ProjectEvent[] = [];
         proj.events = eventLIst;
         this.projectList.push(proj);
-        
         // pushing into the project list
         let len: number = this.projectList.length;
         let projListItem : ProjectListItem = {        
@@ -105,10 +105,26 @@ export class ProjectService {
 
     /**
      * Method for selecting the project
+     * This method is called when a project is selected from the list of projects
+     * I need to call the backed and fetch the project details by ID
+     * Then i need to call the method in the event service to fetch the events for the respective project
+     * 
      */
-    selectProjectById(projectId : number){
-        this.selectedProject.next(this.projectList[projectId-1]);
-        this.eventServe.updateEventList(this.projectList[projectId-1].events);
+    selectProjectById(proj : Project){
+        console.log(proj);
+        
+        this.getProjectByID(proj.id)    ;
+        
+        this.eventServe.updateEventList(proj.id);
+
+    }
+
+    private getProjectByID(projId : number ) {
+        this.httpClient.get('http://localhost:8080/project/getProjectById?id='+projId, {headers: this.setHTTPHeaders()}).subscribe((data : any)=>{
+            console.log(data);
+            this.selectedProject.next(this.convertDataProjToModel(data));
+        });
+
     }
 
 

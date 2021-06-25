@@ -1,3 +1,4 @@
+import { Project } from './../../Model/Project';
 import { Subscription } from 'rxjs';
 import { ProjectService } from '../../Service/project.service';
 import { ProjectListItem } from '../../Model/projectListItem';
@@ -23,8 +24,8 @@ export class ProjectListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  projectLIClick(id : number){
-    this.projServ.selectProjectById(id);
+  projectLIClick(proj : Project){
+    this.projServ.selectProjectById(proj);
   }
 
   OnEdit(id : number){

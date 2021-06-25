@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProjectEvent } from './../Model/ProjectEvent';
 import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
@@ -7,6 +8,17 @@ export class EventService {
     
     projectEvents : ProjectEvent[] = [];
     public projectEventList = new Subject<ProjectEvent[]>();
+
+    constructor(private httpClient : HttpClient){        
+    }
+
+    private setHeaders(){
+        let headers = new HttpHeaders();
+        headers.append('Content-type','application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
+        return headers;
+    }
+
     getProjectEvents(){
         return this.projectEvents;
     }
@@ -23,8 +35,25 @@ export class EventService {
     /**
      * Update the eventList with the events of the new project
      */
-    updateEventList(eventList : ProjectEvent[]){
-        this.projectEvents = eventList;
-        this.projectEventList.next(eventList);
+    updateEventList(projId : number){
+        // this.projectEvents = eventList;
+        this.httpClient.get('http://localhost:8080/event/getEventsForProject?id='+ projId,{headers : this.setHeaders()}).subscribe((data : any)=>{
+            // console.log(data);
+            this.projectEventList.next(this.convertResponseDataToEvent(data));
+        });
+        
     }
+
+    private convertResponseDataToEvent (data : any[] ){ 
+        let eventList : ProjectEvent[] = [];
+        for(var i=0; i< data.length; i++ ){
+            let event : ProjectEvent = new ProjectEvent();
+            event.id = data[i].id;
+            event.topic = data[i].eventTopic;
+            event.status = data[i].eventStatus;
+            event.eventDesc = data[i].eventDescription;
+            eventList.push(event);
+        }
+        return eventList;
+    } 
 }

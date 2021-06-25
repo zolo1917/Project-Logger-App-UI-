@@ -6,7 +6,7 @@
   <hr>
   <div class="row">
     <div class="col-xs-12 col-md-12" *ngFor="let project of projects; let index=i">
-      <a class="container-fluid list-group-item clearfix" (click)="projectLIClick(project.id)">
+      <a class="container-fluid list-group-item clearfix" (click)="projectLIClick(project)">
         <!-- add this to the above line for navigation  -->
         <div class="float-left">
           <h4 class="list-group-heading">{{ project.name }}</h4>
