@@ -21,7 +21,12 @@ export class ProjectService {
     constructor(
         private eventServe: EventService,
         private httpClient : HttpClient
-        ) {}
+        ) {
+            // TODO : update and get the list of xref values from the backend.
+            this.httpClient.get('http://localhost:8080/project/getProjectSStatusValues',{headers : this.setHTTPHeaders()}).subscribe((data : any[])=>{
+                console.log(data);
+            });
+        }
 
     private  setHTTPHeaders() {
         let headers = new HttpHeaders();
@@ -48,11 +53,11 @@ export class ProjectService {
                 //     proj.events = eventList ;
                 // }
                 // this.projectList.push(proj);
-
                 // create project List Item
+                
                 let projListItem : ProjectListItem = new ProjectListItem;
                 projListItem.id = data[i].id;
-                projListItem.name = data[i].projectName;
+                projListItem.name = data[i].name;
                 projListItem.desc = data[i].summary;
                 this.projects.push(projListItem);
 

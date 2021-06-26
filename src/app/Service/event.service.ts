@@ -9,7 +9,8 @@ export class EventService {
     projectEvents : ProjectEvent[] = [];
     public projectEventList = new Subject<ProjectEvent[]>();
 
-    constructor(private httpClient : HttpClient){        
+    constructor(private httpClient : HttpClient){
+        // TODO: make backend call for getting xref values        
     }
 
     private setHeaders(){
