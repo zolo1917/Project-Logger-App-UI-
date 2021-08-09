@@ -1,0 +1,71 @@
+.navbar {
+  position: absolute;
+  background-color: rgb(182, 182, 182);
+  width: 100%;
+  height: 8%;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+
+.navbar-login {
+  float: right;
+  display: inline;
+  box-sizing: border-box;
+  height: 100%;
+  width: 10%;
+}
+
+.navbar-brand {
+  font-family: sans-serif;
+  font-size: larger;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding-top: 12px;
+}
+
+.navbar-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  align-self: center;
+  color: rgb(221, 221, 221);
+  height: 100%;
+}
+.navbar-li {
+  float: left;
+  display: inline;
+  box-sizing: border-box;
+  height: 100%;
+  width: 10%;
+}
+
+.navbar-link:hover {
+  /* background-color: green; */
+  border-left: outset;
+  border-right: outset;
+  /* color: white; */
+}
+
+.navbar-link {
+  display: block;
+  font-family: sans-serif;
+  padding-top: 18px;
+  box-sizing: border-box;
+  font-size: 15px;
+  text-align: center;
+  color: rgb(95, 95, 95);
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-link:active {
+  color: black;
+}
