@@ -10,67 +10,67 @@ import { URLSearchParams } from 'url';
 
 @Injectable()
 export class ProjectService {
-    private projects : ProjectListItem[] = [];
+    private projects: ProjectListItem[] = [];
 
-    public selectedProject = new Subject<Project>() ;
+    public selectedProject = new Subject<Project>();
     public projectListSub = new Subject<ProjectListItem[]>();
     public editSelectedProject = new Subject<Project>();
 
-    projectList : Project[] = [];
+    projectList: Project[] = [];
 
     constructor(
         private eventServe: EventService,
-        private httpClient : HttpClient
-        ) {
-            // TODO : update and get the list of xref values from the backend.
-            this.httpClient.get('http://localhost:8080/project/getProjectSStatusValues',{headers : this.setHTTPHeaders()}).subscribe((data : any[])=>{
-                console.log(data);
-            });
-        }
+        private httpClient: HttpClient
+    ) {
+        // TODO : update and get the list of xref values from the backend.
+        this.httpClient.get('http://localhost:8080/project/getProjectSStatusValues', { headers: this.setHTTPHeaders() }).subscribe((data: any[]) => {
+            console.log(data);
+        });
+    }
 
-    private  setHTTPHeaders() {
+    private setHTTPHeaders() {
         let headers = new HttpHeaders();
         headers.append('Content-type', 'application/json');
         headers.set('Access-Control-Allow-Origin', '*');
         return headers;
     }
-    
-        /**
-     * New method to fetch all active Projects
-     */
-    getProjectList (userId : number) {
-        userId = 1;
-        
-        this.httpClient.get('http://localhost:8080/project/getProjects?id='+userId,{ headers: this.setHTTPHeaders()})
-        .subscribe((data : any[]) =>{
-            for(var i=0 ;i < data.length ; i++ ){
-                console.log(data[i]);
-               
-                // if(data[i].events) {
-                //     proj.events = data[i].events
-                // }else {
-                //     let eventList : ProjectEvent[] = [];
-                //     proj.events = eventList ;
-                // }
-                // this.projectList.push(proj);
-                // create project List Item
-                
-                let projListItem : ProjectListItem = new ProjectListItem;
-                projListItem.id = data[i].id;
-                projListItem.name = data[i].name;
-                projListItem.desc = data[i].summary;
-                this.projects.push(projListItem);
 
-            }
-        },
-        error => {
-            console.log(error);
-        });
+    /**
+ * New method to fetch all active Projects
+ */
+    getProjectList(userId: number) {
+        userId = 1;
+
+        this.httpClient.get('http://localhost:8080/project/getProjects?id=' + userId, { headers: this.setHTTPHeaders() })
+            .subscribe((data: any[]) => {
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+
+                    // if(data[i].events) {
+                    //     proj.events = data[i].events
+                    // }else {
+                    //     let eventList : ProjectEvent[] = [];
+                    //     proj.events = eventList ;
+                    // }
+                    // this.projectList.push(proj);
+                    // create project List Item
+
+                    let projListItem: ProjectListItem = new ProjectListItem;
+                    projListItem.id = data[i].id;
+                    projListItem.name = data[i].name;
+                    projListItem.desc = data[i].summary;
+                    this.projects.push(projListItem);
+
+                }
+            },
+                error => {
+                    console.log(error);
+                });
         return this.projects;
     }
 
-    private convertDataProjToModel(data : any){
-        let proj : Project = new Project();
+    private convertDataProjToModel(data: any) {
+        let proj: Project = new Project();
         proj.id = data.id;
         proj.name = data.projectName;
         proj.summary = data.summary;
@@ -82,18 +82,19 @@ export class ProjectService {
     /**
      * Method for adding to a project
      */
-    addProject(proj : Project) {
+    addProject(proj: Project) {
         // pushing into the original project list
         proj.id = this.projectList.length;
-        let eventLIst :ProjectEvent[] = [];
+        let eventLIst: ProjectEvent[] = [];
         proj.events = eventLIst;
+        console.log(proj);
         this.projectList.push(proj);
         // pushing into the project list
         let len: number = this.projectList.length;
-        let projListItem : ProjectListItem = {        
-            'id' : len,
-            'name' : proj.name,
-            'desc' : proj.summary
+        let projListItem: ProjectListItem = {
+            'id': len,
+            'name': proj.name,
+            'desc': proj.summary
         };
         this.projects.push(projListItem);
         this.projectListSub.next(this.projects);
@@ -103,8 +104,8 @@ export class ProjectService {
     /**
      * Method for fetching detials as per ID
      */
-    getProjectById(projectID : number){
-        return this.projectList[projectID-1];
+    getProjectById(projectID: number) {
+        return this.projectList[projectID - 1];
     }
 
 
@@ -115,17 +116,17 @@ export class ProjectService {
      * Then i need to call the method in the event service to fetch the events for the respective project
      * 
      */
-    selectProjectById(proj : Project){
+    selectProjectById(proj: Project) {
         console.log(proj);
-        
-        this.getProjectByID(proj.id)    ;
-        
+
+        this.getProjectByID(proj.id);
+
         this.eventServe.updateEventList(proj.id);
 
     }
 
-    private getProjectByID(projId : number ) {
-        this.httpClient.get('http://localhost:8080/project/getProjectById?id='+projId, {headers: this.setHTTPHeaders()}).subscribe((data : any)=>{
+    private getProjectByID(projId: number) {
+        this.httpClient.get('http://localhost:8080/project/getProjectById?id=' + projId, { headers: this.setHTTPHeaders() }).subscribe((data: any) => {
             console.log(data);
             this.selectedProject.next(this.convertDataProjToModel(data));
         });
@@ -137,8 +138,8 @@ export class ProjectService {
      * Edit Project select
      * @param id Project Id
      */
-    editElementByID(id : number){
-        console.log("Project Details from service {}: {}",id, this.getProjectById(id));
+    editElementByID(id: number) {
+        console.log("Project Details from service {}: {}", id, this.getProjectById(id));
         this.editSelectedProject.next(this.getProjectById(id));
     }
 
@@ -147,19 +148,19 @@ export class ProjectService {
      * Update details of an existing project
      * @param proj Updated project Element
      */
-    updateProject(id: number, proj : Project){
+    updateProject(id: number, proj: Project) {
         console.log("Updated Project : ", proj);
-        console.log("Current Project : ", this.projectList[id-1]);
-        this.projectList[id-1]= proj;
+        console.log("Current Project : ", this.projectList[id - 1]);
+        this.projectList[id - 1] = proj;
 
-        let projLineItem : ProjectListItem = {        
-            'id' : id,
-            'name' : proj.name,
-            'desc' : proj.summary
+        let projLineItem: ProjectListItem = {
+            'id': id,
+            'name': proj.name,
+            'desc': proj.summary
         };
 
-        this.projects[id-1] = projLineItem;
+        this.projects[id - 1] = projLineItem;
         this.projectListSub.next(this.projects);
-        this.selectedProject.next(this.projectList[id-1]);
-    } 
+        this.selectedProject.next(this.projectList[id - 1]);
+    }
 }
